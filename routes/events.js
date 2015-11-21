@@ -45,17 +45,19 @@ module.exports = function(app) {
     console.log(req.body);
 
     var event = new Event({
-      text:    req.body.text,
-      status :  req.body.status, 
+      name_event:    req.body.name_event,
       user_id:    req.body.user_id,
-      tag :    req.body.tag, 
       date:   req.body.date,
-      location:   req.body.location,
-      image: req.body.image,
+      location_lat:   req.body.location_lat,
+      location_long:   req.body.location_long,
+      image_url: req.body.image_url,
       costs: req.body.costs,
       accecibility_tag: req.body.accecibility_tag,
-      number_people_needed: req.body.number_people_needed
+      extra_info : req.body.extra_info,
+      number_people_needed: req.body.number_people_needed,
+      number_people_in_event: req.body.number_people_in_event 
     });
+
 
     event.save(function(err) {
       if(!err) {
@@ -77,6 +79,8 @@ module.exports = function(app) {
     res.send(event);
   };
 
+//
+
 
   //PUT - Update a register already exists
   updateEvent = function(req, res) {
@@ -88,13 +92,19 @@ module.exports = function(app) {
         return res.send({ error: 'Not found' });
       }
 
-      if (req.body.text != null) event.text = req.body.text;
-      if (req.body.status != null) event.status = req.body.status;
+      if (req.body.name_event != null) event.name_event = req.body.name_event;
+      if (req.body.costs != null) event.costs = req.body.costs;
       if (req.body.user_id != null) event.user_id = req.body.user_id; 
-      if (req.body.tag != null) event.tag  = req.body.tag ;
+      if (req.body.accecibility_tag != null) event.accecibility_tag  = req.body.accecibility_tag ;
       if (req.body.date != null) event.date = req.body.date;
-      if (req.body.location.lat != null) event.location.lat = req.body.location.lat;
-      if (req.body.location.log != null) event.location.log = req.body.location.log;
+      if (req.body.image_url != null) event.image_url = req.body.image_url;
+      if (req.body.number_people_needed != null) event.number_people_needed = req.body.number_people_needed;
+      if (req.body.extra_info != null) event.extra_info = req.body.extra_info;
+      if (req.body.location_lat != null) event.location_lat= req.body.location_lat;
+      if (req.body.location_long != null) event.location_long= req.body.location_long;
+      if (req.body.number_people_in_event != null) event.number_people_in_event= req.body.number_people_in_event;
+
+      
       
 
       return event.save(function(err) {

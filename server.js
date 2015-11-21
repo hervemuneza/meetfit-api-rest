@@ -14,10 +14,10 @@ app.configure(function () {
 
 notifications = require('./routes/notifications')(app);
 user = require('./routes/users')(app);
-events = user = require('./routes/events')(app);
+events = require('./routes/events')(app);
 
 // Conexión
-mongoose.connect('mongodb://localhost/notification', function(err, res) {
+mongoose.connect('mongodb://localhost/event', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
