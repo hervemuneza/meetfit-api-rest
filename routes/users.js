@@ -49,7 +49,9 @@ module.exports = function(app) {
       gender :  req.body.gender, 
       age:    req.body.age,
       role :    req.body.role, 
-      location:   req.body.location
+      location_lat:   req.body.location_lat,
+      location_long:   req.body.location_long,
+      location_name:   req.body.location_name
     });
 
     user.save(function(err) {
@@ -87,8 +89,9 @@ module.exports = function(app) {
       if (req.body.gender != null) user.gender = req.body.gender;
       if (req.body.age != null) user.age = req.body.age; 
       if (req.body.role != null) user.age = req.body.role; 
-      if (req.body.location != null) user.location  = req.body.location ;
-     
+      if (req.body.location_lat != null) user.location_lat  = req.body.location_lat ;
+      if (req.body.location_long != null) user.location_long  = req.body.location_long ;
+     if (req.body.location_name != null) user.location_name  = req.body.location_name ;
       
 
       return user.save(function(err) {

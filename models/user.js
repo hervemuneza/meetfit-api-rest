@@ -12,10 +12,12 @@ var User = new Schema({
               require: true 
             },
   role:     { type: String, 
-  			  enum:  ['normal', 'premium'],
+  			  enum:  ['admin', 'premium'],
               require: true 
             },
-  location:   { type: String }
+  location_lat:   { type: String },
+  location_long:   { type: String },
+  location_name:   { type: String }
 });
 
 
