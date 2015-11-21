@@ -1,4 +1,4 @@
-// Incluímos las dependencias que vamos a usar
+
 var express = require("express"),
     app     = express(),
     http    = require("http"),
@@ -7,14 +7,16 @@ var express = require("express"),
 
 
 app.configure(function () {
-  app.use(express.bodyParser()); // JSON parsing
-  app.use(express.methodOverride()); // HTTP PUT and DELETE support
-  app.use(app.router); // simple route management
+  app.use(express.bodyParser()); 
+  app.use(express.methodOverride()); 
+  app.use(app.router); 
 });
 
 notifications = require('./routes/notifications')(app);
 user = require('./routes/users')(app);
 events = require('./routes/events')(app);
+reference = require('./routes/references')(app);
+activity =events = require('./routes/activities')(app);
 
 // Conexión
 mongoose.connect('mongodb://localhost/event', function(err, res) {
@@ -30,7 +32,7 @@ app.get('/', function(req, res) {
   res.send("MeetFit!");
 });
 
-// El servidor escucha en el puerto 3000
+
 server.listen(3000, function() {
   console.log("Node server running on http://localhost:3000");
 });
